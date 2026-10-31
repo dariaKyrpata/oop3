@@ -1,0 +1,15 @@
+using System;
+
+namespace BLL;
+
+public class EntityException : Exception
+{
+    public EntityException(string message) : base(message)
+    {
+    }
+
+    public EntityException(string message, Exception innerException)
+        : base(message, innerException)
+    {
+    }
+}

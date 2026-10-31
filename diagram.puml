@@ -1,0 +1,169 @@
+
+@startuml
+title OOP Lab 3.3 - Variant 14
+
+skinparam classAttributeIconSize 0
+skinparam packageStyle rectangle
+left to right direction
+
+package "PL - Presentation Layer" {
+    class "PL.Program" as Program {
+        + Main() : void
+    }
+
+    class "PL.Menu" as Menu {
+        - service : EntityService
+        + MainMenu() : void
+        - StudentsMenu() : void
+        - PostmenMenu() : void
+        - MountaineersMenu() : void
+        - DrawMenu() : void
+        - ReadText(prompt) : string
+        - ReadInt(prompt) : int
+        - ReadBool(prompt) : bool
+        - ReadFilePath() : string
+        - ReadFormat() : string
+    }
+
+    class "PL.Student" as PLStudent {
+        + LastName : string
+        + FirstName : string
+        + Course : int
+        + StudentId : string
+        + HasScholarship : bool
+        + PassportSeries : string
+        + PassportNumber : string
+        + ToString() : string
+    }
+
+    class "PL.Postman" as PLPostman {
+        + Name : string
+        + EmployeeId : string
+        + DeliveryArea : string
+        + DeliveredLetters : int
+        + ToString() : string
+    }
+
+    class "PL.Mountaineer" as PLMountaineer {
+        + Name : string
+        + ClimberId : string
+        + Mountain : string
+        + ClimbsCompleted : int
+        + ToString() : string
+    }
+
+    Program --> Menu
+    Menu ..> PLStudent
+    Menu ..> PLPostman
+    Menu ..> PLMountaineer
+}
+
+package "BLL - Business Logic Layer" {
+    interface IDrawable {
+        + Draw() : string
+    }
+
+    class "BLL.Student" as BLLStudent {
+        + LastName : string
+        + FirstName : string
+        + Course : int
+        + StudentId : string
+        + HasScholarship : bool
+        + PassportSeries : string
+        + PassportNumber : string
+        + Draw() : string
+    }
+
+    class "BLL.Postman" as BLLPostman {
+        + Name : string
+        + EmployeeId : string
+        + DeliveryArea : string
+        + DeliveredLetters : int
+        + DeliverLetter() : void
+        + Draw() : string
+        + ToString() : string
+    }
+
+    class "BLL.Mountaineer" as BLLMountaineer {
+        + Name : string
+        + ClimberId : string
+        + Mountain : string
+        + ClimbsCompleted : int
+        + CompleteClimb() : void
+        + Draw() : string
+        + ToString() : string
+    }
+
+    class EntityService {
+        - context : EntityContext
+        + AddStudent(student) : void
+        + GetStudents() : List
+        + RemoveStudent(id) : bool
+        + FindStudentsWithoutScholarship() : List
+        + SaveStudents(path, format) : void
+        + LoadStudents(path, format) : void
+        + AddPostman(postman) : void
+        + GetPostmen() : List
+        + RemovePostman(id) : bool
+        + SavePostmen(path, format) : void
+        + LoadPostmen(path, format) : void
+        + AddMountaineer(mountaineer) : void
+        + GetMountaineers() : List
+        + RemoveMountaineer(id) : bool
+        + SaveMountaineers(path, format) : void
+        + LoadMountaineers(path, format) : void
+    }
+
+    class EntityException {
+        + EntityException(message)
+        + EntityException(message, innerException)
+    }
+
+    IDrawable <|.. BLLStudent
+    IDrawable <|.. BLLPostman
+    IDrawable <|.. BLLMountaineer
+
+    EntityService --> BLLStudent
+    EntityService --> BLLPostman
+    EntityService --> BLLMountaineer
+    EntityService ..> EntityException
+}
+
+package "DAL - Data Access Layer" {
+    class "DAL.Student" as DALStudent
+    class "DAL.Postman" as DALPostman
+    class "DAL.Mountaineer" as DALMountaineer
+
+    abstract class DataProvider {
+        + Save<T>(items, filePath) : void
+        + Load<T>(filePath) : List
+    }
+
+    class JsonDataProvider
+    class XmlDataProvider
+    class BinaryDataProvider
+    class CustomDataProvider
+
+    class EntityContext {
+        + Save<T>(items, path, format) : void
+        + Load<T>(path, format) : List
+        + Delete(path) : void
+        + Exists(path) : bool
+    }
+
+    DataProvider <|-- JsonDataProvider
+    DataProvider <|-- XmlDataProvider
+    DataProvider <|-- BinaryDataProvider
+    DataProvider <|-- CustomDataProvider
+
+    EntityContext --> DataProvider
+}
+
+Menu --> EntityService
+Menu ..> IDrawable
+EntityService --> EntityContext
+EntityService ..> DALStudent
+EntityService ..> DALPostman
+EntityService ..> DALMountaineer
+
+@enduml

@@ -1,0 +1,18 @@
+[
+  {
+    "Value": "abc123",
+    "Length": 6
+  },
+  {
+    "Value": "45hello",
+    "Length": 7
+  },
+  {
+    "Value": "a1b2c3",
+    "Length": 6
+  },
+  {
+    "Value": "test789",
+    "Length": 7
+  }
+]

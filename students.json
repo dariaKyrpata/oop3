@@ -1,0 +1,11 @@
+[
+  {
+    "LastName": "Ivanenko ",
+    "FirstName": "Anna",
+    "Course": 4,
+    "StudentId": "5001",
+    "HasScholarship": false,
+    "PassportSeries": "AB",
+    "PassportNumber": "123456"
+  }
+]

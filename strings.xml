@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfStringData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <StringData>
+    <Value>abc123</Value>
+  </StringData>
+  <StringData>
+    <Value>45hello</Value>
+  </StringData>
+  <StringData>
+    <Value>a1b2c3</Value>
+  </StringData>
+  <StringData>
+    <Value>test789</Value>
+  </StringData>
+</ArrayOfStringData>

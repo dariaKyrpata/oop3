@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfStudent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Student>
+    <LastName>Ivanenko </LastName>
+    <FirstName>Anna</FirstName>
+    <Course>4</Course>
+    <StudentId>5001</StudentId>
+    <HasScholarship>false</HasScholarship>
+    <PassportSeries>AB</PassportSeries>
+    <PassportNumber>123456</PassportNumber>
+  </Student>
+</ArrayOfStudent>
